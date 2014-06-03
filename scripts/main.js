@@ -2,6 +2,7 @@ $( document ).ready( function() {
     var TOTAL_LINHAS = 5;
     var TOTAL_COLUNAS = 5;
     var TOTAL_BOMBAS = 5;
+    var BOMBA = 'B-O-M-B-A!';
 
     var campo = [];
     var totalFalhas = 0;
@@ -70,21 +71,27 @@ $( document ).ready( function() {
         return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
     }
 
+    var checaBomba = function( linha, coluna ) {
+        if ( campo[ linha ][ coluna ] == BOMBA ) {
+            return true;
+        }
+    }
+
     var esconderBomba = function() {
         
         var linha = retornarRandomico( 1, TOTAL_LINHAS );
         var coluna = retornarRandomico( 1, TOTAL_COLUNAS );
 
-        if ( campo[ linha ][ coluna ] != 'BOMBA' ) {
-            campo[ linha ][ coluna ] = 'BOMBA';
+        if ( ! checaBomba( linha, coluna ) ) {
+            campo[ linha ][ coluna ] = BOMBA;
 
-            // $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
+            $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
         } else {
             esconderBomba();
         }
     }
 
-    var escolherQuadrado = function(link) {
+    var escolherQuadrado = function( link ) {
         var linha = link.parent().attr( 'id' );
         linha = linha.split( '-' );
         linha = linha[1];
@@ -93,7 +100,7 @@ $( document ).ready( function() {
         coluna = coluna.split( '-' );
         coluna = coluna[1];
 
-        if( campo[ linha ][ coluna ] == 'BOMBA' ) {
+        if( checaBomba( linha,  coluna ) ) {
             $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
             alert( 'B-O-M-B-A!' );
             location.reload();
@@ -104,49 +111,49 @@ $( document ).ready( function() {
             coluna = parseInt( coluna );
 
             if ( typeof( campo[ linha - 1 ] ) != 'undefined' && typeof( campo[ coluna - 1 ] ) != 'undefined' ) {
-                if ( campo[ linha - 1 ][ coluna - 1 ] == 'BOMBA' ) {
+                if ( checaBomba( linha - 1, coluna - 1 ) ) {
                     bombasRedor++;
                 }
             }
 
             if ( typeof( campo[ linha - 1 ] ) != 'undefined' ) {
-                if ( campo[ linha - 1 ][ coluna ] == 'BOMBA' ) {
+                if ( checaBomba( linha - 1, coluna ) ) {
                     bombasRedor++;
                 }
             }
 
             if ( typeof( campo[ linha - 1 ] ) != 'undefined' && typeof( campo[ coluna + 1 ] ) != 'undefined' ) {
-                if ( campo[ linha - 1 ][ coluna + 1 ] == 'BOMBA' ) {
+                if ( checaBomba( linha - 1, coluna + 1 ) ) {
                     bombasRedor++;
                 }
             }
 
             if ( typeof( campo[ coluna - 1 ] ) != 'undefined' ) {
-                if ( campo[ linha ][ coluna - 1 ] == 'BOMBA' ) {
+                if ( checaBomba( linha, coluna - 1 ) ) {
                     bombasRedor++;
                 }
             }
 
             if ( typeof( campo[ coluna + 1 ] ) != 'undefined' ) {
-                if ( campo[ linha ][ coluna + 1 ] == 'BOMBA' ) {
+                if ( checaBomba( linha, coluna + 1 ) ) {
                     bombasRedor++;
                 }
             }
 
             if ( typeof( campo[ linha + 1 ] ) != 'undefined' && typeof( campo[ coluna - 1 ] ) != 'undefined' ) {
-                if ( campo[ linha + 1 ][ coluna - 1 ] == 'BOMBA' ) {
+                if ( checaBomba( linha + 1, coluna - 1 ) ) {
                     bombasRedor++;
                 }
             }
 
             if ( typeof( campo[ linha + 1 ] ) != 'undefined' ) {
-                if ( campo[ linha + 1 ][ coluna ] == 'BOMBA' ) {
+                if ( checaBomba( linha + 1, coluna ) ) {
                     bombasRedor++;
                 }
             }
 
             if ( typeof( campo[ linha + 1 ] ) != 'undefined' && typeof( campo[ coluna + 1 ] ) != 'undefined' ) {
-                if ( campo[ linha + 1 ][ coluna + 1 ] == 'BOMBA' ) {
+                if ( checaBomba( linha + 1, coluna + 1 ) ) {
                     bombasRedor++;
                 }
             }
