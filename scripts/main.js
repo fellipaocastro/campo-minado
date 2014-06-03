@@ -159,7 +159,7 @@ $( document ).ready( function() {
             }
 
             if ( bombasRedor > 0 ) {
-                $( '#linha-' + linha + '> a > #coluna-' + coluna ).html( bombasRedor );
+                $( '#linha-' + linha + ' > a > #coluna-' + coluna ).html( bombasRedor );
             }
         }
     }
