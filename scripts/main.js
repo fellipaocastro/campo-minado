@@ -91,6 +91,18 @@ $( document ).ready( function() {
         }
     }
 
+    var checaLinhaExiste = function( linha ) {
+        if ( ( linha > 0 ) && ( linha <= TOTAL_LINHAS ) ){
+            return true;
+        }
+    }
+
+    var checaColunaExiste = function( coluna ) {
+        if ( (coluna > 0 ) && ( coluna <= TOTAL_COLUNAS ) ){
+            return true;
+        }
+    }
+
     var escolherQuadrado = function( link ) {
         var linha = link.parent().attr( 'id' );
         linha = linha.split( '-' );
@@ -110,49 +122,49 @@ $( document ).ready( function() {
             linha = parseInt( linha );
             coluna = parseInt( coluna );
 
-            if ( typeof( campo[ linha - 1 ] ) != 'undefined' && typeof( campo[ coluna - 1 ] ) != 'undefined' ) {
+            if ( checaLinhaExiste( linha - 1 ) && checaColunaExiste( coluna - 1 ) ) {
                 if ( checaBomba( linha - 1, coluna - 1 ) ) {
                     bombasRedor++;
                 }
             }
 
-            if ( typeof( campo[ linha - 1 ] ) != 'undefined' ) {
+            if ( checaLinhaExiste( linha - 1 ) ) {
                 if ( checaBomba( linha - 1, coluna ) ) {
                     bombasRedor++;
                 }
             }
 
-            if ( typeof( campo[ linha - 1 ] ) != 'undefined' && typeof( campo[ coluna + 1 ] ) != 'undefined' ) {
+            if ( checaLinhaExiste( linha - 1 ) && checaColunaExiste( coluna + 1 ) ) {
                 if ( checaBomba( linha - 1, coluna + 1 ) ) {
                     bombasRedor++;
                 }
             }
 
-            if ( typeof( campo[ coluna - 1 ] ) != 'undefined' ) {
+            if ( checaColunaExiste( coluna - 1 ) ) {
                 if ( checaBomba( linha, coluna - 1 ) ) {
                     bombasRedor++;
                 }
             }
 
-            if ( typeof( campo[ coluna + 1 ] ) != 'undefined' ) {
+            if ( checaColunaExiste( coluna + 1 ) ) {
                 if ( checaBomba( linha, coluna + 1 ) ) {
                     bombasRedor++;
                 }
             }
 
-            if ( typeof( campo[ linha + 1 ] ) != 'undefined' && typeof( campo[ coluna - 1 ] ) != 'undefined' ) {
+            if ( checaLinhaExiste( linha + 1 ) && checaColunaExiste( coluna - 1 ) ) {
                 if ( checaBomba( linha + 1, coluna - 1 ) ) {
                     bombasRedor++;
                 }
             }
 
-            if ( typeof( campo[ linha + 1 ] ) != 'undefined' ) {
+            if ( checaLinhaExiste( linha + 1 ) ) {
                 if ( checaBomba( linha + 1, coluna ) ) {
                     bombasRedor++;
                 }
             }
 
-            if ( typeof( campo[ linha + 1 ] ) != 'undefined' && typeof( campo[ coluna + 1 ] ) != 'undefined' ) {
+            if ( checaLinhaExiste( linha + 1 ) && checaColunaExiste( coluna + 1 ) ) {
                 if ( checaBomba( linha + 1, coluna + 1 ) ) {
                     bombasRedor++;
                 }
