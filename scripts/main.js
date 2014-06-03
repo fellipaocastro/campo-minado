@@ -36,7 +36,15 @@ $( document ).ready( function() {
             $( '#campo' ).html( constroiCampo() );
 
             $( '.row > a' ).on( 'click', function( e ) {
-                escolheQuadrado( $( this ) );
+                var linha = $( this ).parent().attr( 'id' );
+                linha = linha.split( '-' );
+                linha = linha[ 1 ];
+
+                var coluna =  $( this ).children().attr( 'id' );
+                coluna = coluna.split( '-' );
+                coluna = coluna[ 1 ];
+
+                escolheQuadrado( linha, coluna );
 
                 e.preventDefault();
             });
@@ -121,15 +129,7 @@ $( document ).ready( function() {
         return adjacentes;
     }
 
-    var escolheQuadrado = function( link ) {
-        var linha = link.parent().attr( 'id' );
-        linha = linha.split( '-' );
-        linha = linha[ 1 ];
-
-        var coluna = link.children().attr( 'id' );
-        coluna = coluna.split( '-' );
-        coluna = coluna[ 1 ];
-
+    var escolheQuadrado = function( linha, coluna ) {
         if( checaBomba( linha,  coluna ) ) {
             $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
             alert( BOMBA );
