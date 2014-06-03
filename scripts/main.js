@@ -160,6 +160,7 @@ $( document ).ready( function() {
                 bomba = bombas[ i ].split( 'x' );
                 var linha_bomba = bomba[ 0 ];
                 var coluna_bomba = bomba[ 1 ];
+
                 $( '#linha-' + linha_bomba + '-coluna-' + coluna_bomba ).addClass( 'outra_bomba' );
             }
 
