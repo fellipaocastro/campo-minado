@@ -5,6 +5,7 @@ $( document ).ready( function() {
     var BOMBA = 'B-O-M-B-A!';
 
     var campo = [];
+    var bombas = [];
     var totalFalhas = 0;
 
     var validaConfiguracoes = function() {
@@ -42,7 +43,7 @@ $( document ).ready( function() {
 
                 var coluna =  $( this ).children().attr( 'id' );
                 coluna = coluna.split( '-' );
-                coluna = coluna[ 1 ];
+                coluna = coluna[ 3 ];
 
                 escolheQuadrado( linha, coluna );
 
@@ -66,7 +67,7 @@ $( document ).ready( function() {
             for ( var j = 1; j <= TOTAL_COLUNAS; j++ ) {
                 campo[ i ][ j ] = '';
                 
-                html += '<a href="#"><div class="col-md-1" id="coluna-' + j + '">&nbsp;</div></a>';
+                html += '<a href="#"><div class="col-md-1" id="linha-' + i + '-coluna-' + j + '">&nbsp;</div></a>';
             }
 
             html += '</div>';
@@ -93,7 +94,9 @@ $( document ).ready( function() {
         if ( ! checaBomba( linha, coluna ) ) {
             campo[ linha ][ coluna ] = BOMBA;
 
-            // $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
+            bombas.push( linha + 'x' + coluna );
+
+            // $( '#linha-' + linha + '-coluna-' + coluna ).addClass( 'bomba' );
         } else {
             escondeBomba();
         }
@@ -112,6 +115,9 @@ $( document ).ready( function() {
     }
 
     var retornaAdjacentes = function( linha, coluna ){
+        linha = parseInt( linha );
+        coluna = parseInt( coluna );
+
         var adjacentes = [];
 
         for ( var i = linha - 1; i <= linha + 1; i++ ) {
@@ -144,21 +150,27 @@ $( document ).ready( function() {
         }
 
         if ( bombasRedor > 0 ) {
-            $( '#linha-' + linha + ' > a > #coluna-' + coluna ).html( bombasRedor );
+            $( '#linha-' + linha + '-coluna-' + coluna ).html( bombasRedor );
         }
     }
 
     var escolheQuadrado = function( linha, coluna ) {
         if( checaBomba( linha,  coluna ) ) {
-            $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
+            for ( var i = 0; i < bombas.length; i++ ){
+                bomba = bombas[ i ].split( 'x' );
+                var linha_bomba = bomba[ 0 ];
+                var coluna_bomba = bomba[ 1 ];
+                $( '#linha-' + linha_bomba + '-coluna-' + coluna_bomba ).addClass( 'outra_bomba' );
+            }
+
+            $( '#linha-' + linha + '-coluna-' + coluna ).removeClass( 'outra_bomba' );
+            $( '#linha-' + linha + '-coluna-' + coluna ).addClass( 'bomba' );
+
             alert( BOMBA );
+            
             location.reload();
         } else {
             var bombasRedor = 0;
-
-            linha = parseInt( linha );
-            coluna = parseInt( coluna );
-
             var adjacentes = retornaAdjacentes( linha, coluna );
 
             for ( var i = 0; i < adjacentes.length; i++ ){
@@ -172,7 +184,7 @@ $( document ).ready( function() {
             }
 
             if ( bombasRedor > 0 ) {
-                $( '#linha-' + linha + ' > a > #coluna-' + coluna ).html( bombasRedor );
+                $( '#linha-' + linha + '-coluna-' + coluna ).html( bombasRedor );
             } else {
                 for ( var i = 0; i < adjacentes.length; i++ ){
                     adjacente = adjacentes[ i ].split( 'x' );
