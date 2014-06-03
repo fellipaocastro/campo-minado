@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-family: arial,helvetica,freesans,sans-serif;
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+    padding: 0;
+}
+
+.off {
+    display: none; 
+}
+
+.row > a > div {
+    border: 1px black solid;
+    margin: 1px;
+    text-align: center;
+    width: 5px;
+}
+
+.col-md-1 {
+    padding-left: 7px;
+}
+
+.bomba {
+    background-color: red;
+}
