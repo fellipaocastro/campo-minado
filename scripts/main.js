@@ -129,6 +129,25 @@ $( document ).ready( function() {
         return adjacentes;
     }
 
+    var mostraAdjacentes = function( linha, coluna ) {
+        var bombasRedor = 0;
+        var adjacentes = retornaAdjacentes( linha, coluna );
+
+        for ( var i = 0; i < adjacentes.length; i++ ){
+            adjacente = adjacentes[ i ].split( 'x' );
+            var linha_adjacente = adjacente[ 0 ];
+            var coluna_adjacente = adjacente[ 1 ];
+
+            if ( checaBomba( linha_adjacente, coluna_adjacente ) ) {
+                bombasRedor++;
+            }
+        }
+
+        if ( bombasRedor > 0 ) {
+            $( '#linha-' + linha + ' > a > #coluna-' + coluna ).html( bombasRedor );
+        }
+    }
+
     var escolheQuadrado = function( linha, coluna ) {
         if( checaBomba( linha,  coluna ) ) {
             $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
@@ -143,9 +162,9 @@ $( document ).ready( function() {
             var adjacentes = retornaAdjacentes( linha, coluna );
 
             for ( var i = 0; i < adjacentes.length; i++ ){
-                adjacentes[ i ] = adjacentes[ i ].split( 'x' );
-                var linha_adjacente = adjacentes[ i ][ 0 ];
-                var coluna_adjacente = adjacentes[ i ][ 1 ];
+                adjacente = adjacentes[ i ].split( 'x' );
+                var linha_adjacente = adjacente[ 0 ];
+                var coluna_adjacente = adjacente[ 1 ];
 
                 if ( checaBomba( linha_adjacente, coluna_adjacente ) ) {
                     bombasRedor++;
@@ -154,6 +173,14 @@ $( document ).ready( function() {
 
             if ( bombasRedor > 0 ) {
                 $( '#linha-' + linha + ' > a > #coluna-' + coluna ).html( bombasRedor );
+            } else {
+                for ( var i = 0; i < adjacentes.length; i++ ){
+                    adjacente = adjacentes[ i ].split( 'x' );
+                    var linha_adjacente = adjacente[ 0 ];
+                    var coluna_adjacente = adjacente[ 1 ];
+
+                    mostraAdjacentes( linha_adjacente, coluna_adjacente );
+                }
             }
         }
     }
