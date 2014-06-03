@@ -149,9 +149,7 @@ $( document ).ready( function() {
             }
         }
 
-        if ( bombasRedor > 0 ) {
-            $( '#linha-' + linha + '-coluna-' + coluna ).html( bombasRedor );
-        }
+        $( '#linha-' + linha + '-coluna-' + coluna ).html( bombasRedor );
     }
 
     var escolheQuadrado = function( linha, coluna ) {
@@ -184,9 +182,9 @@ $( document ).ready( function() {
                 }
             }
 
-            if ( bombasRedor > 0 ) {
-                $( '#linha-' + linha + '-coluna-' + coluna ).html( bombasRedor );
-            } else {
+            $( '#linha-' + linha + '-coluna-' + coluna ).html( bombasRedor );
+
+            if ( bombasRedor == 0 ) {
                 for ( var i = 0; i < adjacentes.length; i++ ){
                     adjacente = adjacentes[ i ].split( 'x' );
                     var linha_adjacente = adjacente[ 0 ];
