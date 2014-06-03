@@ -85,7 +85,7 @@ $( document ).ready( function() {
         if ( ! checaBomba( linha, coluna ) ) {
             campo[ linha ][ coluna ] = BOMBA;
 
-            $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
+            // $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
         } else {
             esconderBomba();
         }
