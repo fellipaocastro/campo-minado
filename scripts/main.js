@@ -132,7 +132,7 @@ $( document ).ready( function() {
 
         if( checaBomba( linha,  coluna ) ) {
             $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
-            alert( bomba );
+            alert( BOMBA );
             location.reload();
         } else {
             var bombasRedor = 0;
