@@ -36,13 +36,13 @@ $( document ).ready( function() {
             $( '#campo' ).html( constroiCampo() );
 
             $( '.row > a' ).on( 'click', function( e ) {
-                escolherQuadrado( $( this ) );
+                escolheQuadrado( $( this ) );
 
                 e.preventDefault();
             });
 
             for( var i = 1; i <= TOTAL_BOMBAS; i++ ) {
-                esconderBomba();
+                escondeBomba();
             }
         }
     }
@@ -67,7 +67,7 @@ $( document ).ready( function() {
         return html;
     }
 
-    var retornarRandomico = function( min, max ) {
+    var retornaRandomico = function( min, max ) {
         return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
     }
 
@@ -77,17 +77,17 @@ $( document ).ready( function() {
         }
     }
 
-    var esconderBomba = function() {
+    var escondeBomba = function() {
         
-        var linha = retornarRandomico( 1, TOTAL_LINHAS );
-        var coluna = retornarRandomico( 1, TOTAL_COLUNAS );
+        var linha = retornaRandomico( 1, TOTAL_LINHAS );
+        var coluna = retornaRandomico( 1, TOTAL_COLUNAS );
 
         if ( ! checaBomba( linha, coluna ) ) {
             campo[ linha ][ coluna ] = BOMBA;
 
             // $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
         } else {
-            esconderBomba();
+            escondeBomba();
         }
     }
 
@@ -103,7 +103,7 @@ $( document ).ready( function() {
         }
     }
 
-    var escolherQuadrado = function( link ) {
+    var escolheQuadrado = function( link ) {
         var linha = link.parent().attr( 'id' );
         linha = linha.split( '-' );
         linha = linha[1];
