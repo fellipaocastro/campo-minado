@@ -95,7 +95,7 @@ $( document ).ready( function() {
 
             bombas.push( linha + 'x' + coluna );
 
-            // $( '#linha-' + linha + '-coluna-' + coluna ).addClass( 'bomba' );
+            // $( '#linha-' + linha + '-coluna-' + coluna ).addClass( 'bomba_selecionada' );
         } else {
             escondeBomba();
         }
@@ -158,11 +158,10 @@ $( document ).ready( function() {
                 var linha_bomba = bomba[ 0 ];
                 var coluna_bomba = bomba[ 1 ];
 
-                $( '#linha-' + linha_bomba + '-coluna-' + coluna_bomba ).addClass( 'outra_bomba' );
+                $( '#linha-' + linha_bomba + '-coluna-' + coluna_bomba ).addClass( 'bomba' );
             }
 
-            $( '#linha-' + linha + '-coluna-' + coluna ).removeClass( 'outra_bomba' );
-            $( '#linha-' + linha + '-coluna-' + coluna ).addClass( 'bomba' );
+            $( '#linha-' + linha + '-coluna-' + coluna ).removeClass( 'bomba' ).addClass( 'bomba_selecionada' );
 
             alert( BOMBA );
             
