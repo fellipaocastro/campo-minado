@@ -87,7 +87,6 @@ $( document ).ready( function() {
     }
 
     var escondeBomba = function() {
-        
         var linha = retornaRandomico( 1, TOTAL_LINHAS );
         var coluna = retornaRandomico( 1, TOTAL_COLUNAS );
 
