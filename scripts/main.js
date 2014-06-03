@@ -103,18 +103,36 @@ $( document ).ready( function() {
         }
     }
 
+    var retornaAdjacentes = function( linha, coluna ){
+        var adjacentes = [];
+
+        for ( var i = linha - 1; i <= linha + 1; i++ ) {
+            if ( checaLinhaExiste( i ) ) {
+                for ( var j = coluna - 1; j <= coluna + 1; j++ ) {
+                    if ( checaColunaExiste( j ) ) {
+                        if ( ! ( ( i == linha ) && ( j == coluna ) ) ){
+                            adjacentes.push( i + 'x' + j );
+                        }
+                    }
+                }
+            }
+        }
+
+        return adjacentes;
+    }
+
     var escolheQuadrado = function( link ) {
         var linha = link.parent().attr( 'id' );
         linha = linha.split( '-' );
-        linha = linha[1];
+        linha = linha[ 1 ];
 
         var coluna = link.children().attr( 'id' );
         coluna = coluna.split( '-' );
-        coluna = coluna[1];
+        coluna = coluna[ 1 ];
 
         if( checaBomba( linha,  coluna ) ) {
             $( '#linha-' + linha + ' > a > #coluna-' + coluna ).addClass( 'bomba' );
-            alert( 'B-O-M-B-A!' );
+            alert( bomba );
             location.reload();
         } else {
             var bombasRedor = 0;
@@ -122,50 +140,14 @@ $( document ).ready( function() {
             linha = parseInt( linha );
             coluna = parseInt( coluna );
 
-            if ( checaLinhaExiste( linha - 1 ) && checaColunaExiste( coluna - 1 ) ) {
-                if ( checaBomba( linha - 1, coluna - 1 ) ) {
-                    bombasRedor++;
-                }
-            }
+            var adjacentes = retornaAdjacentes( linha, coluna );
 
-            if ( checaLinhaExiste( linha - 1 ) ) {
-                if ( checaBomba( linha - 1, coluna ) ) {
-                    bombasRedor++;
-                }
-            }
+            for ( var i = 0; i < adjacentes.length; i++ ){
+                adjacentes[ i ] = adjacentes[ i ].split( 'x' );
+                var linha_adjacente = adjacentes[ i ][ 0 ];
+                var coluna_adjacente = adjacentes[ i ][ 1 ];
 
-            if ( checaLinhaExiste( linha - 1 ) && checaColunaExiste( coluna + 1 ) ) {
-                if ( checaBomba( linha - 1, coluna + 1 ) ) {
-                    bombasRedor++;
-                }
-            }
-
-            if ( checaColunaExiste( coluna - 1 ) ) {
-                if ( checaBomba( linha, coluna - 1 ) ) {
-                    bombasRedor++;
-                }
-            }
-
-            if ( checaColunaExiste( coluna + 1 ) ) {
-                if ( checaBomba( linha, coluna + 1 ) ) {
-                    bombasRedor++;
-                }
-            }
-
-            if ( checaLinhaExiste( linha + 1 ) && checaColunaExiste( coluna - 1 ) ) {
-                if ( checaBomba( linha + 1, coluna - 1 ) ) {
-                    bombasRedor++;
-                }
-            }
-
-            if ( checaLinhaExiste( linha + 1 ) ) {
-                if ( checaBomba( linha + 1, coluna ) ) {
-                    bombasRedor++;
-                }
-            }
-
-            if ( checaLinhaExiste( linha + 1 ) && checaColunaExiste( coluna + 1 ) ) {
-                if ( checaBomba( linha + 1, coluna + 1 ) ) {
+                if ( checaBomba( linha_adjacente, coluna_adjacente ) ) {
                     bombasRedor++;
                 }
             }
