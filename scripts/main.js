@@ -9,17 +9,17 @@ $( document ).ready( function() {
     var totalFalhas = 0;
 
     var validaConfiguracoes = function() {
-        if( TOTAL_LINHAS < 1 ) {
+        if ( TOTAL_LINHAS < 1 ) {
             alert( 'É necessário setar ao menos uma linha para criar o jogo!' );
             totalFalhas++;
         }
 
-        if( TOTAL_COLUNAS < 1 ) {
+        if ( TOTAL_COLUNAS < 1 ) {
             alert( 'É necessário setar ao menos uma coluna para criar o jogo!' );
             totalFalhas++;
         }
 
-        if( TOTAL_BOMBAS < 1 ) {
+        if ( TOTAL_BOMBAS < 1 ) {
             alert( 'É necessário setar ao menos uma bomba para criar o jogo!' );
             totalFalhas++;
         }
@@ -50,7 +50,7 @@ $( document ).ready( function() {
                 e.preventDefault();
             });
 
-            for( var i = 1; i <= TOTAL_BOMBAS; i++ ) {
+            for ( var i = 1; i <= TOTAL_BOMBAS; i++ ) {
                 escondeBomba();
             }
         }
@@ -152,7 +152,7 @@ $( document ).ready( function() {
     }
 
     var escolheQuadrado = function( linha, coluna ) {
-        if( checaBomba( linha,  coluna ) ) {
+        if ( checaBomba( linha,  coluna ) ) {
             for ( var i = 0; i < bombas.length; i++ ){
                 bomba = bombas[ i ].split( 'x' );
                 var linha_bomba = bomba[ 0 ];
