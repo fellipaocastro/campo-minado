@@ -1,3 +1,5 @@
+"use strict";
+
 $( document ).ready( function() {
     var TOTAL_LINHAS = 5;
     var TOTAL_COLUNAS = 5;
