@@ -156,6 +156,7 @@ $( document ).ready( function() {
 
     var escolheQuadrado = function( linha, coluna ) {
         if ( checaBomba( linha,  coluna ) ) {
+            var bomba;
             for ( var i = 0; i < bombas.length; i++ ){
                 bomba = bombas[ i ].split( 'x' );
                 var linha_bomba = bomba[ 0 ];
