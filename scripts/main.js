@@ -139,6 +139,7 @@ $( document ).ready( function() {
     var mostraAdjacentes = function( linha, coluna ) {
         var bombasRedor = 0;
         var adjacentes = retornaAdjacentes( linha, coluna );
+        var adjacente;
 
         for ( var i = 0; i < adjacentes.length; i++ ){
             adjacente = adjacentes[ i ].split( 'x' );
