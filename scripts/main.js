@@ -1,14 +1,14 @@
 "use strict";
 
 $( document ).ready( function() {
-    var TOTAL_LINHAS = 5;
-    var TOTAL_COLUNAS = 5;
-    var TOTAL_BOMBAS = 5;
-    var BOMBA = 'B-O-M-B-A!';
+    var TOTAL_LINHAS = 5,
+        TOTAL_COLUNAS = 5,
+        TOTAL_BOMBAS = 5,
+        BOMBA = 'B-O-M-B-A!';
 
-    var campo = [];
-    var bombas = [];
-    var totalFalhas = 0;
+    var campo = [],
+        bombas = [],
+        totalFalhas = 0;
 
     var validaConfiguracoes = function() {
         if ( TOTAL_LINHAS < 1 ) {
