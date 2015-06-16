@@ -30,7 +30,7 @@ $( document ).ready( function() {
             alert( 'O número de bombas não pode ser maior que a relação linhas x colunas!' );
             totalFalhas++;
         }
-    }
+    };
 
     var main = function() {
         validaConfiguracoes();
@@ -56,7 +56,7 @@ $( document ).ready( function() {
                 escondeBomba();
             }
         }
-    }
+    };
 
     var constroiCampo = function() {
         var html = '';
@@ -76,17 +76,17 @@ $( document ).ready( function() {
         }
 
         return html;
-    }
+    };
 
     var retornaRandomico = function( min, max ) {
         return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
-    }
+    };
 
     var checaBomba = function( linha, coluna ) {
         if ( campo[ linha ][ coluna ] == BOMBA ) {
             return true;
         }
-    }
+    };
 
     var escondeBomba = function() {
         var linha = retornaRandomico( 1, TOTAL_LINHAS );
@@ -101,19 +101,19 @@ $( document ).ready( function() {
         } else {
             escondeBomba();
         }
-    }
+    };
 
     var checaLinhaExiste = function( linha ) {
         if ( ( linha > 0 ) && ( linha <= TOTAL_LINHAS ) ){
             return true;
         }
-    }
+    };
 
     var checaColunaExiste = function( coluna ) {
         if ( (coluna > 0 ) && ( coluna <= TOTAL_COLUNAS ) ){
             return true;
         }
-    }
+    };
 
     var retornaAdjacentes = function( linha, coluna ){
         linha = parseInt( linha );
@@ -134,7 +134,7 @@ $( document ).ready( function() {
         }
 
         return adjacentes;
-    }
+    };
 
     var mostraAdjacentes = function( linha, coluna ) {
         var bombasRedor = 0;
@@ -152,7 +152,7 @@ $( document ).ready( function() {
         }
 
         $( '#linha-' + linha + '-coluna-' + coluna ).html( bombasRedor );
-    }
+    };
 
     var escolheQuadrado = function( linha, coluna ) {
         if ( checaBomba( linha,  coluna ) ) {
@@ -197,7 +197,7 @@ $( document ).ready( function() {
                 }
             }
         }
-    }
+    };
 
     main();
 });
